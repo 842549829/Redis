@@ -12,20 +12,12 @@ namespace Redis.Base
         /// <summary>
         /// RedisMappingElement
         /// </summary>
-        private static readonly RedisSettings redisSettings = RedisSettings.GetConfig();
+        private static RedisSettings redisSettings;
 
         /// <summary>
         /// 连接池
         /// </summary>
         private static PooledRedisClientManager pooledRedisClientManager;
-
-        /// <summary>
-        /// 静态构造方法，初始化链接池管理对象
-        /// </summary>
-        static RedisManager()
-        {
-            CreateManager();
-        }
 
         /// <summary>
         /// 创建链接池管理对象
@@ -56,12 +48,14 @@ namespace Redis.Base
         }
 
         /// <summary>
-        /// 客户端缓存操作对象
+        /// 获取连接
         /// </summary>
-        public static IRedisClient GetClient()
+        /// <param name="sectionName">节点名称</param>
+        public static IRedisClient GetClient(string sectionName = null)
         {
             if (pooledRedisClientManager == null)
             {
+                redisSettings = sectionName == null ? RedisSettings.GetConfig() : RedisSettings.GetConfig(sectionName);
                 CreateManager();
             }
             return pooledRedisClientManager?.GetClient();

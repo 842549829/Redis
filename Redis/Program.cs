@@ -13,11 +13,21 @@ namespace Redis
     {
         static void Main(string[] args)
         {
+
+            //RedisClient redisClient = new RedisClient("192.168.20.46", 6379);
+            //redisClient.Db = 0;
+            //redisClient.FlushDb();
+            RedisClient aClient = new RedisClient("192.168.10.9", 6379);
+            List<string> allKey = aClient.GetAllKeys();
             // 连接池方式
             using (var hash = new DoRedisHash())
             {
+
+                
                 hash.SetEntryInHash("1", "1", "CreateTransaction");
                 var r = hash.GetValueFromHash("1", "1");
+
+                
             }
 
 

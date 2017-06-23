@@ -11,7 +11,7 @@ namespace Redis.Base
         /// <summary>
         /// 当前连接
         /// </summary>
-        public static IRedisClient Core { get; private set; }
+        public IRedisClient Core { get; private set; }
 
         /// <summary>
         /// 是否关闭连接
@@ -21,9 +21,18 @@ namespace Redis.Base
         /// <summary>
         /// 静态构造函数
         /// </summary>
-        static RedisBase()
+        protected RedisBase()
         {
-            Core = RedisManager.GetClient();
+            this.Core = RedisManager.GetClient();
+        }
+
+        /// <summary>
+        /// 静态构造函数
+        /// </summary>
+        /// <param name="sectionName">节点名称</param>
+        protected RedisBase(string sectionName)
+        {
+            this.Core = RedisManager.GetClient(sectionName);
         }
 
         /// <summary>
