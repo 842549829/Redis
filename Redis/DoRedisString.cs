@@ -115,28 +115,28 @@ namespace Redis
 
         #region 获取旧值赋上新值
 
-        /// <summary>
-        /// 获取旧值赋上新值
-        /// </summary>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        /// <returns>result</returns>
-        public string GetAndSetValue(string key, string value)
-        {
-            return Core.GetAndSetValue(key, value);
-        }
+        ///// <summary>
+        ///// 获取旧值赋上新值
+        ///// </summary>
+        ///// <param name="key">key</param>
+        ///// <param name="value">value</param>
+        ///// <returns>result</returns>
+        //public string GetAndSetValue(string key, string value)
+        //{
+        //    return Core.GetAndSetValue(key, value);
+        //}
         #endregion
 
         #region 辅助方法
-        /// <summary>
-        /// 获取值的长度
-        /// </summary>
-        /// <param name="key">key</param>
-        /// <returns>count</returns>
-        public long GetCount(string key)
-        {
-            return Core.GetStringCount(key);
-        }
+        ///// <summary>
+        ///// 获取值的长度
+        ///// </summary>
+        ///// <param name="key">key</param>
+        ///// <returns>count</returns>
+        //public long GetCount(string key)
+        //{
+        //    return Core.GetStringCount(key);
+        //}
 
         /// <summary>
         /// 自增1，返回自增后的值
@@ -154,7 +154,7 @@ namespace Redis
         /// <param name="key">key</param>
         /// <param name="count">count</param>
         /// <returns>double</returns>
-        public double IncrBy(string key, double count)
+        public double IncrBy(string key, int count)
         {
             return Core.IncrementValueBy(key, count);
         }

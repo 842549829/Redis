@@ -149,7 +149,7 @@ namespace Redis
         /// <param name="key">key</param>
         /// <param name="countBy">countBy</param>
         /// <returns>result</returns>
-        public double IncrementValueInHash(string hashid, string key, double countBy)
+        public double IncrementValueInHash(string hashid, string key, int countBy)
         {
             return Core.IncrementValueInHash(hashid, key, countBy);
         }
