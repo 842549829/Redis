@@ -14,17 +14,17 @@ namespace Redis
         static void Main(string[] args)
         {
 
-            RedisClient redisClient = new RedisClient("192.168.10.9", 6379);
-            redisClient.Db = 0;
-            redisClient.FlushDb();
-            // 连接池方式
-            using (var hash = new DoRedisHash())
-            {
-                var count = hash.Core.GetAllKeys();
-                var keys = hash.GetHashKeys("XICAYN");
-                var r1 = hash.GetHashValues("XICAYN");
-                var r = hash.GetValueFromHash("XICAYN", "3UB");
-            }
+            //RedisClient redisClient = new RedisClient("192.168.10.9", 6379);
+            //redisClient.Db = 0;
+            //redisClient.FlushDb();
+            //// 连接池方式
+            //using (var hash = new DoRedisHash())
+            //{
+            //    var count = hash.Core.GetAllKeys();
+            //    var keys = hash.GetHashKeys("XICAYN");
+            //    var r1 = hash.GetHashValues("XICAYN");
+            //    var r = hash.GetValueFromHash("XICAYN", "3UB");
+            //}
 
 
             // 其他普通方式
@@ -59,7 +59,7 @@ namespace Redis
 
 
             //在Redis中存储常用的5种数据类型：String,Hash,List,SetSorted set
-            RedisClient client = new RedisClient("192.168.20.46", 6379);
+            RedisClient client = new RedisClient("127.0.0.1", 6379);
 
             var db = client.Db;
             client.Db = 1;
@@ -98,6 +98,41 @@ namespace Redis
             #endregion
 
             #region Hash
+
+            client.FlushDb();
+            // https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/RedisPipelineTests.cs
+            #region 批量添加
+            var fields = new[] { "field1", "field2", "field3" };
+            var values = new[] { "1", "2", "3" };
+            var fieldBytes = new byte[fields.Length][];
+            for (int i = 0; i < fields.Length; ++i)
+            {
+                fieldBytes[i] = GetBytes(fields[i]);
+
+            }
+            var valueBytes = new byte[values.Length][];
+            for (int i = 0; i < values.Length; ++i)
+            {
+                valueBytes[i] = GetBytes(values[i]);
+
+            }
+
+            byte[][] members = null;
+            using (var pipeline = client.CreatePipeline())
+            {
+                pipeline.QueueCommand(r => ((RedisNativeClient)r).HMSet("HashKey", fieldBytes, valueBytes));
+                pipeline.QueueCommand(r => ((RedisNativeClient)r).HGetAll("HashKey"), x => members = x);
+                pipeline.Flush();
+            }
+            for (var i = 0; i < members.Length; i += 2)
+            {
+                var strrBytes = GetString(members[i]);
+
+            } 
+            #endregion
+
+
+
             client.SetEntryInHash("HashID", "Name", "张三");
             client.SetEntryInHash("HashID", "Age", "24");
             client.SetEntryInHash("HashID", "Sex", "男");
@@ -214,6 +249,16 @@ namespace Redis
                 Console.WriteLine("SetSorted有序集合{0}", item);
             }
             #endregion
+        }
+
+        public static string GetString(byte[] stringBytes)
+        {
+            return Encoding.UTF8.GetString(stringBytes);
+        }
+
+        public static byte[] GetBytes(string stringValue)
+        {
+            return Encoding.UTF8.GetBytes(stringValue);
         }
     }
 
