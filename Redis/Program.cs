@@ -124,6 +124,8 @@ namespace Redis
                 pipeline.QueueCommand(r => ((RedisNativeClient)r).HGetAll("HashKey"), x => members = x);
                 pipeline.Flush();
             }
+            // 设置key过期
+            client.ExpireEntryAt("HashKey",DateTime.Now.AddMinutes(1));
             for (var i = 0; i < members.Length; i += 2)
             {
                 var strrBytes = GetString(members[i]);
