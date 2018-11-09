@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ServiceStack.Redis;
+using ServiceStack.Text;
 
 namespace Redis
 {
@@ -124,13 +125,40 @@ namespace Redis
                 pipeline.QueueCommand(r => ((RedisNativeClient)r).HGetAll("HashKey"), x => members = x);
                 pipeline.Flush();
             }
+
+
+            using (var hash = new DoRedisHash())
+            {
+                TimeSpan expires = new TimeSpan(0, 0, 0, 20);
+                string hashId = "hashId001";
+                List<KeyValuePair<string, string>> keyValuePairs = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("key","value")
+                };
+
+                byte[][] keys = new byte[keyValuePairs.Count][];
+                byte[][] values1 = new byte[keyValuePairs.Count][];
+                for (int index = 0; index < keyValuePairs.Count; ++index)
+                {
+                    KeyValuePair<string, string> keyValuePair = keyValuePairs[index];
+                    keys[index] = keyValuePair.Key.ToUtf8Bytes();
+                    values1[index] = keyValuePair.Value.ToUtf8Bytes();
+                }
+                ((RedisClient)hash.Core).HMSet(hashId, keys, values1);
+                hash.Core.ExpireEntryIn(hashId, expires);
+            }
+
+
+
+            //client.SetRangeInHash(hashId, keyValuePairs,);
+
             // 设置key过期
-            client.ExpireEntryAt("HashKey",DateTime.Now.AddMinutes(1));
+            client.ExpireEntryAt("HashKey", DateTime.Now.AddMinutes(1));
             for (var i = 0; i < members.Length; i += 2)
             {
                 var strrBytes = GetString(members[i]);
 
-            } 
+            }
             #endregion
 
 

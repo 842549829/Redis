@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis", "Redis\Redis.csproj", "{0026B902-B205-4A19-8F5D-21DF6EC81314}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Redis", "ServiceStack.Redis\ServiceStack.Redis.csproj", "{CBE91C7F-9B5A-41A0-A009-EF9D436FA308}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Text", "ServiceStack.Text\ServiceStack.Text.csproj", "{143977DA-C130-4812-AFBB-CCFD877F2A81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnAuthorization", "UnAuthorization5.0\UnAuthorization.csproj", "{4FB435B6-9925-4605-B189-5B576D686A43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +21,23 @@ Global
 		{0026B902-B205-4A19-8F5D-21DF6EC81314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0026B902-B205-4A19-8F5D-21DF6EC81314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0026B902-B205-4A19-8F5D-21DF6EC81314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE91C7F-9B5A-41A0-A009-EF9D436FA308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE91C7F-9B5A-41A0-A009-EF9D436FA308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE91C7F-9B5A-41A0-A009-EF9D436FA308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE91C7F-9B5A-41A0-A009-EF9D436FA308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143977DA-C130-4812-AFBB-CCFD877F2A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143977DA-C130-4812-AFBB-CCFD877F2A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143977DA-C130-4812-AFBB-CCFD877F2A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143977DA-C130-4812-AFBB-CCFD877F2A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB435B6-9925-4605-B189-5B576D686A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB435B6-9925-4605-B189-5B576D686A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB435B6-9925-4605-B189-5B576D686A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB435B6-9925-4605-B189-5B576D686A43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FC9564D-18AB-4505-8D7F-DF49F4C3EA21}
 	EndGlobalSection
 EndGlobal
