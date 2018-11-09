@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStack.Text", "Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnAuthorization", "UnAuthorization5.0\UnAuthorization.csproj", "{4FB435B6-9925-4605-B189-5B576D686A43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization", "Authorization\Authorization.csproj", "{36104A8E-C324-4301-B3E0-2FDDFA6A55B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4FB435B6-9925-4605-B189-5B576D686A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FB435B6-9925-4605-B189-5B576D686A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FB435B6-9925-4605-B189-5B576D686A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36104A8E-C324-4301-B3E0-2FDDFA6A55B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36104A8E-C324-4301-B3E0-2FDDFA6A55B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36104A8E-C324-4301-B3E0-2FDDFA6A55B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36104A8E-C324-4301-B3E0-2FDDFA6A55B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
