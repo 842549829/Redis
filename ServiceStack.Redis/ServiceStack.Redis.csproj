@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.2</Version>
+    <Version>1.0.5</Version>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageId>My.ServiceStack.Redis</PackageId>
@@ -35,13 +35,14 @@
    
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Common" Version="5.0.0" />
-    <PackageReference Include="ServiceStack.Interfaces" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.Text\ServiceStack.Text.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStack.Common\ServiceStack.Common.csproj" />
+    <ProjectReference Include="..\ServiceStack.Interfaces\ServiceStack.Interfaces.csproj" />
+    <ProjectReference Include="..\ServiceStack.Text\ServiceStack.Text.csproj" />
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="del $(ProjectDir)$(OutDir)..\*.nupkg /s/q&#xD;&#xA;exit 0" />
+  </Target>
 </Project>

@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+      
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      
+        <Version>5.0.0</Version>
+      
+        <PackageId>My.ServiceStack.Interfaces</PackageId>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' != 'Debug' ">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <Compile Include="..\..\ServiceStack.Interfaces\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+        <Compile Include="..\..\ServiceStack.Interfaces\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+    </ItemGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+        <DefineConstants>DEBUG;TRACE;NET45</DefineConstants>
+        <SignAssembly>false</SignAssembly>
+        <DelaySign>False</DelaySign>
+        <AssemblyOriginatorKeyFile>../servicestack.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+        <DefineConstants>$(DefineConstants);NETSTANDARD2_0</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+        <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Properties\" />
+    </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="del $(ProjectDir)$(OutDir)..\*.nupkg /s/q&#xD;&#xA;exit 0" />
+    </Target>
+
+</Project>
